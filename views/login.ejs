@@ -1,0 +1,29 @@
+<%- include('partials/header.ejs'); %>
+<style>
+    body{
+        background: url('https://res.cloudinary.com/hipsicloud/image/upload/v1589490162/cover_vcjscp.jpg');
+        background-size: cover;
+        background-repeat: no-repeat;
+            background-attachment: fixed;
+    }
+</style>
+<div class="container" style="min-height: 88vh;">
+    <div class="row">
+        <h1 style="width:100%;text-align: center;color:white">Login</h1>
+        <div  style="width:40vh;margin:25px auto;">
+            <form action="/login" method="POST">
+                <div class="form-group">
+                    <input class="form-control"  type="text" name="username" placeholder="username">
+                </div>
+                <div class="form-group">
+                    <input  class="form-control" type="password" name="password" placeholder="password">
+                </div>
+                <button class="btn btn-secondary btn-block">LogIn</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<footer id="homefooter">
+    © Made by Hipranshu &ensp; | &ensp; <a href="https://www.instagram.com/hipsi.ig/?hl=en"><span><img src="https://pluspng.com/img-png/instagram-png-instagram-png-logo-1455.png" height="20px" width="20px"></span></a>
+</footer>

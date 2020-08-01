@@ -1,0 +1,65 @@
+<%- include('../partials/header.ejs'); %>
+
+
+<div class="container" style="min-height: 86vh;">
+    <div class="row black justify-content-center">
+        <div class="col-md-5 col-sm-10">
+            <div class="card bg-light">
+                <img src="<%= product.image %>">
+            </div>
+        </div>
+        <div class="col-md-5 col-sm-10">
+            <div class="card bg-light">
+                <div class="caption-full">
+                    <h4><%=product.name%></h4>
+                    <h5 class="float-right"><%= product.price %></h5>
+                    <p><%= product.description%></p>
+                    <p>
+                        <em><b>Product By</b></em> : <%= product.seller.name %> (<%= product.seller.username %>)<br>
+                        <em><b>Contact</b></em> : <%= product.seller.number %><br>
+                        <em><b>Address</b></em> : <%= product.seller.address %>
+                    </p>
+                    <% if(currentUser && product.seller.id.equals(currentUser._id)){ %>
+                    <a class="btn btn-warning" href="/products/<%= product._id %>/edit">Edit product</a>
+                    <form id="delete-form" action="/products/<%= product._id %>?_method=DELETE" method="POST">
+                        <button class="btn btn-danger">Delete</button>
+                    </form>
+                    <% } %>
+                </div>
+            </div>
+            <div class="card card-body bg-light commenttopmargin">
+                <div class="text-center">
+                    <a class="btn btn-success"  href="/products/<%= product._id %>/comments/new">Add comment</a>
+                </div>
+                    <% if(product.comments.length===0){ %>
+                        <div class="row border-top" style="margin-top: 20px;">
+                            <div class="col-md-12 text-center">
+                                <br>
+                                <p>No comments yet</p>
+                            </div>
+                        </div>
+                    <% }else{ %>
+                    <%product.comments.forEach(comment=>{%>
+                        <div class="row border-top" style="margin-top: 20px;">
+                            <div class="col-md-12">
+                                <b><%= comment.author.username %></b>
+                                <p>
+                                    <%= comment.text %>
+                                </p>
+                                <% if(currentUser && comment.author.id.equals(currentUser._id)){ %>
+                                <a class="btn  btn-warning btn-sm" href="/products/<%= product._id %>/comments/<%= comment._id %>/edit">Edit</a>
+                            <form id="delete-form" action="/products/<%= product._id %>/comments/<%= comment._id %>?_method=DELETE" method="POST">
+                                <input type="submit" class="btn btn-danger btn-sm" value="Delete">
+                            </form>
+                            <% } %>
+                            </div>
+                        </div>        
+                    <% })} %>
+                </div>
+            </div>
+             
+        </div>
+    </div>
+</div>
+    
+    <%- include('../partials/footer.ejs'); %>

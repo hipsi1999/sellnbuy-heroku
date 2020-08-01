@@ -1,0 +1,41 @@
+<%- include('../partials/header.ejs'); %>
+
+
+<div class="container" style="min-height: 88vh;">
+    <h1 style="width:100%;text-align: center; color:white">Post a product</h1>
+    <div class="row"> 
+
+       
+        <div style="width:40vh;margin:25px auto;">
+            <form action="/products" id="newform" method="POST" enctype="multipart/form-data">
+                <div class="form-group">
+                    <input class="form-control" type="text" name="name" placeholder="name">
+                </div>
+                <div class="form-group">
+                    <div class="custom-file">
+                        <input class="custom-file-input"  type="file" id="file" name="image" placeholder="image url">
+                        <label class="custom-file-label" for="file">Upload image</label> 
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="text" name="description" placeholder="description">
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="text" name="price" placeholder="price">
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-secondary btn-block">Post!</button>
+                </div>
+            </form>
+        </div>       
+    </div>
+</div>
+
+<script>
+    $(".custom-file-input").on("change", function() {
+      var fileName = $(this).val().split("\\").pop();
+      $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+    });
+</script>
+
+<%- include('../partials/footer.ejs'); %>

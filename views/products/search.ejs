@@ -1,0 +1,36 @@
+<%- include('../partials/header.ejs'); %>
+
+<div class="container" style="min-height: 88vh;">
+    <header class="jumbotron text-center">
+        <div class="container">
+            <h1>Products</h1>
+            <p>Post, Sell & purchase</p>
+            <p><a class="btn btn-primary btn-sm"href="/products/new">Add a new product</a></p>
+            <form class="form-inline justify-content-center" method="POST" action="/products/search">
+                <input class="form-control mr-sm-2" name="product" type="search" placeholder="Search Product" aria-label="Search">
+              </form>
+        </div>    
+    </header>
+
+
+    <div class="row text-center justify-content-center" style="display: flex;flex-wrap:wrap">
+        <% products.forEach(product=>{%>
+            <div class="col-lg-3 col-sm-5" style="padding:0">
+                    <img src="<%= product.image %>" height="250px" width="250px"> 
+                    <div class="card-body">
+                        <div class="caption text-light">
+                            <h4><%= product.name %></h4>
+                        </div>
+                        <div class="caption text-light">
+                            <h6><%= product.price %></h6>
+                        </div>
+                        <p>
+                            <a href="/products/<%= product._id %>" class="btn btn-light btn-sm">Show</a>
+                        </p>
+                    </div>  
+            </div>
+        <%});%>
+    </div>    
+</div>
+
+<%- include('../partials/footer.ejs'); %>

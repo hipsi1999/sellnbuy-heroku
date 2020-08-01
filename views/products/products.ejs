@@ -1,0 +1,36 @@
+<%- include('../partials/header.ejs'); %>
+
+<div class="container" style="min-height: 88vh;">
+    <header class="jumbotron text-center" style="margin-top: 20px;">
+        <div class="container">
+            <h1>Products</h1>
+            <p>Post, Sell & purchase</p>
+            <p><a class="btn btn-primary btn-sm"href="/products/new">Add a new product</a></p>
+            <form class="form-inline justify-content-center" method="POST" action="/products/search">
+                <input class="form-control mr-sm-2" name="product" type="search" placeholder="Search Product" aria-label="Search">
+              </form>
+        </div>    
+    </header>
+
+
+    <div class="row text-center justify-content-center" style="display: flex;flex-wrap:wrap">
+        <% if(products.length!==0){products.forEach(product=>{%>
+            <div class="col-lg-4 col-sm-6" style="padding:0">
+                    <img src="<%= product.image %>" height="250px" width="250px"> 
+                    <div class="card-body">
+                        <div class="caption text-light" style="overflow: hidden;">
+                            <h5><%= product.name %></h5>
+                        </div>
+                        <div class="caption text-light">
+                            <h5><%= product.price %></h5>
+                        </div>
+                        <div class="caption">
+                            <a href="/products/<%= product._id %>" class="btn btn-light btn-sm">Show</a>
+                        </div>
+                    </div>  
+            </div>
+        <%})};%>
+    </div>    
+</div>
+
+<%- include('../partials/footer.ejs'); %>
